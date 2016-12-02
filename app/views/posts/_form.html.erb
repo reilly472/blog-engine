@@ -51,5 +51,14 @@
         editor.getSession().on("change", function () {
             textarea.val(editor.getSession().getValue());
         });
+        
+        $(document).on('keydown', function(e){
+            if(e.ctrlKey && e.which === 83){ // Check for the Ctrl key being pressed, and if the key = [S] (83)
+                console.log('Ctrl+S!');
+                $("form input[name=commit]").click();
+                e.preventDefault();
+                return false;
+            }
+        });
     </script>
 <% end %>

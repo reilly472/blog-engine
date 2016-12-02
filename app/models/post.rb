@@ -3,6 +3,6 @@ class Post < ActiveRecord::Base
     validates :body, presence: true
     
     def body_display
-      read_attribute(:body).html_safe
+      Liquid::Template.parse(read_attribute(:body)).render.html_safe
     end
 end

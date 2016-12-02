@@ -7,7 +7,7 @@ class PostsController < ApplicationController
     end
     
     def show
-        
+        @post_display = Liquid::Template.parse(@post.body)
     end
     
     def new
