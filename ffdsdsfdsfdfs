@@ -1,0 +1,14 @@
+
+[1mFrom:[0m /home/ubuntu/workspace/app/controllers/posts_controller.rb @ line 32 PostsController#update:
+
+    [1;34m31[0m: [32mdef[0m [1;34mupdate[0m
+ => [1;34m32[0m:     binding.pry
+    [1;34m33[0m:     [32mif[0m @post.update(post_params)
+    [1;34m34[0m:         flash[[33m:notice[0m] = [31m[1;31m"[0m[31mPost updated[1;31m"[0m[31m[0m
+    [1;34m35[0m:         redirect_to post_path(@post)
+    [1;34m36[0m:     [32melse[0m
+    [1;34m37[0m:         flash[[33m:alert[0m] = [31m[1;31m"[0m[31mPost not saved[1;31m"[0m[31m[0m
+    [1;34m38[0m:         render [33m:edit[0m
+    [1;34m39[0m:     [32mend[0m
+    [1;34m40[0m: [32mend[0m
+

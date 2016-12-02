@@ -3,8 +3,6 @@ source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3'
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
 # Use SCSS for stylesheets
@@ -30,9 +28,22 @@ gem 'jbuilder', '~> 2.5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+gem 'bootstrap-sass', '~> 3.3.6'
+gem 'font-awesome-sass'
+gem 'devise'
+gem 'ace-rails-ap'
+
 group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+    # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
+  # Use sqlite3 as the database for Active Record
+	gem 'sqlite3'
+	gem 'pry'
+end
+
+group :production do
+	gem 'pg'
+	gem 'rails_12factor'
 end
 
 group :development do
@@ -42,6 +53,7 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'rails_db'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

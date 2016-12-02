@@ -1,0 +1,12 @@
+<h1>
+    Here is my new blog!
+</h1>
+
+<% @posts.each do |post| %>
+    <%= render 'post', post: post %>
+<% end %>
+<% if user_signed_in? %>
+    <p>
+        <%= link_to 'New post', new_post_path %>
+    </p>
+<% end %>

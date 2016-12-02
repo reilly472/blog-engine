@@ -1,0 +1,55 @@
+<% content_for :head do %>
+    <style type="text/css" media="screen">
+	.ace_editor {
+		border: 1px solid lightgray;
+		margin: auto;
+		height: 850px;
+		width: 100%;
+	}
+	.scrollmargin {
+		height: 80px;
+        text-align: center;
+	}
+    </style>
+<% end %>
+
+<div class="row">
+    <div class="col-md-3">
+        <h1>
+            <%= title %>
+        </h1>
+        <%= render 'shared/errors', obj: @post %>
+        <div>
+            <%= form_for @post do |f| %>
+                <div>
+                    <%= f.label :title %>
+                    <%= f.text_field :title %>
+                </div>
+                <div>
+                    <%= f.text_area :body, style: "display: none;" %>
+                </div>
+                <div>
+                    <%= f.submit(@post.new_record? ? 'Create Post' : 'Update Post') %>
+                </div>
+            <% end %>
+        </div>
+    </div>
+    <div class="col-md-9">
+        <div id="editor"><%= @post.body %></div>
+    </div>
+</div>
+
+<% content_for :body_close do %>
+    <script src="/ace-builds/src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
+    
+    <script>
+        var editor = ace.edit("editor");
+        editor.setTheme("ace/theme/cobalt");
+        editor.getSession().setMode("ace/mode/html");
+
+        var textarea = $('textarea[name="post[body]"]');
+        editor.getSession().on("change", function () {
+            textarea.val(editor.getSession().getValue());
+        });
+    </script>
+<% end %>

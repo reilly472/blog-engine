@@ -12,5 +12,12 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require bootstrap-sprockets
 //= require turbolinks
+//= require ace-rails-ap
+//= require ace/theme-solarized_dark
+//= require ace/theme-cobalt
+//= require ace/mode-html
+//= require ace/mode-liquid
+//= require ace/mode-javascript
 //= require_tree .
