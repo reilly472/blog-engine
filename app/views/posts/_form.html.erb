@@ -19,6 +19,11 @@
         <h1>
             <%= title %>
         </h1>
+        <% if !@post.new_record? %>
+            <p>
+                <%= link_to "View Post", post_path(@post) %>
+            </p>
+        <% end %>
         <%= render 'shared/errors', obj: @post %>
         <div>
             <%= form_for @post do |f| %>
@@ -39,11 +44,11 @@
             <% end %>
         </div>
         <hr />
-        <p>
-            <% if !@post.new_record? %>
+        <% if !@post.new_record? %>
+            <p>
                 <%= link_to 'Delete Post', post_path(@post), method: 'DELETE', class: "btn btn-danger" %>
-            <% end %>
-        </p>
+            </p>
+        <% end %>
     </div>
     <div class="col-md-9">
         <div id="editor"><%= @post.body %></div>
