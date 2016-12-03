@@ -1,13 +1,14 @@
-<div class="row">
-    <h2>
-        <%= link_to post.title, post_path(post)  %>
-    </h2>
-    <p>
-        <%= post.body_display %>
-    </p>
-    <% if user_signed_in? %>
-        <p>
-            <%= link_to 'Edit Post', edit_post_path(post) %>
-        </p>
-    <% end %>
+<h2>
+    <%= link_to post.title, post_path(post) %>
+</h2>
+<div>
+    <%= Liquid::Template.parse(post.body).render( 'params' => params ).html_safe %>
 </div>
+<% if user_signed_in? %>
+    <p>
+        <%= link_to 'Edit Post', edit_post_path(post) %>
+    </p>
+    <p>
+        <%= link_to 'Delete Post', post_path(post), method: 'DELETE' %>
+    </p>
+<% end %>

@@ -1,13 +1,13 @@
 class PostsController < ApplicationController
-    before_filter :authenticate_user!, only: [:new, :create, :edit, :update]
-    before_action :set_post, only: [:show, :edit, :update]
+    before_filter :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+    before_action :set_post, only: [:show, :edit, :update, :destroy]
     
     def index
         @posts = Post.all
     end
     
     def show
-        @post_display = Liquid::Template.parse(@post.body)
+        
     end
     
     def new
@@ -38,13 +38,23 @@ class PostsController < ApplicationController
         end
     end
     
+    def destroy
+        @post.destroy
+        flash[:notice] = "User deleted"
+        redirect_to root_path
+    end
+    
     private
     
     def set_post
-        @post = Post.find(params[:id]) 
+        begin
+            @post = Post.friendly.find(params[:id]) 
+        rescue ActiveRecord::RecordNotFound => e
+            raise ActionController::RoutingError.new('Not Found')
+        end
     end
     
     def post_params
-        params.require(:post).permit(:title, :body)
+        params.require(:post).permit(:title, :body, :slug)
     end
 end

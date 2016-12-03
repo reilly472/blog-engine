@@ -26,6 +26,10 @@
                     <%= f.text_field :title %>
                 </div>
                 <div>
+                    <%= f.label :slug %>
+                    <%= f.text_field :slug %>
+                </div>
+                <div>
                     <%= f.text_area :body, style: "display: none;" %>
                 </div>
                 <div>
@@ -33,6 +37,11 @@
                 </div>
             <% end %>
         </div>
+        <p>
+            <% if !@post.new_record? %>
+                <%= link_to 'Delete Post', post_path(@post), method: 'DELETE' %>
+            <% end %>
+        </p>
     </div>
     <div class="col-md-9">
         <div id="editor"><%= @post.body %></div>

@@ -2,9 +2,14 @@
     Here is my new blog!
 </h1>
 
-<% @posts.each do |post| %>
-    <%= render 'post', post: post %>
-<% end %>
+<div class="row">
+    <% @posts.each do |post| %>
+        <%= render 'post', post: post %>
+        <hr />
+    <% end %>
+</div>
+<hr />
+
 <% if user_signed_in? %>
     <p>
         <%= link_to 'New post', new_post_path %>

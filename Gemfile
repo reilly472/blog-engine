@@ -33,6 +33,7 @@ gem 'font-awesome-sass'
 gem 'devise'
 gem 'ace-rails-ap'
 gem 'liquid'
+gem 'friendly_id'
 gem 'simple_form'
 
 group :development, :test do
@@ -56,6 +57,8 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'rails_db'
+  gem "binding_of_caller"
+  gem "better_errors"
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

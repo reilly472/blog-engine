@@ -1,8 +1,8 @@
 class Post < ActiveRecord::Base
+    extend FriendlyId
+    friendly_id :title, use: :slugged
+    
     validates :title, presence: true, length: {minimum: 5}
     validates :body, presence: true
-    
-    def body_display
-      read_attribute(:body).html_safe
-    end
+  
 end
