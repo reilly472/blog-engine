@@ -21,7 +21,6 @@ class PostsController < ApplicationController
             flash[:notice] = "Post created" 
             redirect_to posts_path
         else
-            flash[:alert] = "Post not saved"
             render :new
         end
     end
@@ -33,7 +32,6 @@ class PostsController < ApplicationController
             flash[:notice] = "Post updated"
             redirect_to post_path(@post)
         else
-            flash[:alert] = "Post not saved"
             render :edit
         end
     end
