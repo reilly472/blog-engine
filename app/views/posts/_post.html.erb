@@ -2,7 +2,7 @@
     <%= link_to post.title, post_path(post) %>
 </h2>
 <div>
-    <%= Liquid::Template.parse(post.body).render( 'params' => params ).html_safe %>
+    <%= Liquid::Template.parse(post.body).render( 'params' => params, 'snippet' => SnippetDrop.new ).html_safe %>
 </div>
 <% if user_signed_in? %>
     <p>

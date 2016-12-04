@@ -1,10 +1,21 @@
 <% content_for :head do %>
     <style type="text/css" media="screen">
-	.ace_editor {
+	#editor {
 		border: 1px solid lightgray;
 		margin: auto;
-		margin-top: 10px;
-		height: 850px;
+		height: 600px;
+		width: 100%;
+	}
+	#editorHead {
+		border: 1px solid lightgray;
+		margin: auto;
+		height: 100px;
+		width: 100%;
+	}
+	#editorBodyClose {
+		border: 1px solid lightgray;
+		margin: auto;
+		height: 100px;
 		width: 100%;
 	}
 	.scrollmargin {
@@ -39,6 +50,12 @@
                     <%= f.text_area :body, style: "display: none;" %>
                 </div>
                 <div class="form-group">
+                    <%= f.text_area :head, style: "display: none;" %>
+                </div>
+                <div class="form-group">
+                    <%= f.text_area :body_close, style: "display: none;" %>
+                </div>
+                <div class="form-group">
                     <%= f.submit((@post.new_record? ? 'Create Post' : 'Update Post'), class: "btn btn-success") %>
                 </div>
             <% end %>
@@ -49,8 +66,27 @@
                 <%= link_to 'Delete Post', post_path(@post), method: 'DELETE', class: "btn btn-danger" %>
             </p>
         <% end %>
+        <hr />
+        <ul>
+            <% @snippets.each do |snip| %>
+                <li>
+                    <%= snip.code %>
+                </li>
+            <% end %>
+        </ul>
     </div>
     <div class="col-md-9">
+        <h3>
+            Head tag
+        </h3>
+        <div id="editorHead"><%= @post.head %></div>
+        <h3>
+            Body close tag
+        </h3>
+        <div id="editorBodyClose"><%= @post.body_close %></div>
+        <h3>
+            body
+        </h3>
         <div id="editor"><%= @post.body %></div>
     </div>
 </div>
@@ -62,10 +98,30 @@
         var editor = ace.edit("editor");
         editor.setTheme("ace/theme/cobalt");
         editor.getSession().setMode("ace/mode/html");
-
+        
         var textarea = $('textarea[name="post[body]"]');
         editor.getSession().on("change", function () {
             textarea.val(editor.getSession().getValue());
+        });
+        
+        
+        var editorHead = ace.edit("editorHead");
+        editorHead.setTheme("ace/theme/cobalt");
+        editorHead.getSession().setMode("ace/mode/html");
+        
+        var textareaHead = $('textarea[name="post[head]"]');
+        editorHead.getSession().on("change", function () {
+            textareaHead.val(editorHead.getSession().getValue());
+        });
+        
+        
+        var editorBodyClose = ace.edit("editorBodyClose");
+        editorBodyClose.setTheme("ace/theme/cobalt");
+        editorBodyClose.getSession().setMode("ace/mode/html");
+        
+        var textareaBodyClose = $('textarea[name="post[body_close]"]');
+        editorBodyClose.getSession().on("change", function () {
+            textareaBodyClose.val(editorBodyClose.getSession().getValue());
         });
         
         $(document).on('keydown', function(e){

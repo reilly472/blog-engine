@@ -1,1 +1,9 @@
+<% content_for :head do %>
+    <%= @post.head.html_safe %>
+<% end %>
+
+<% content_for :body_close do %>
+    <%= @post.body_close.html_safe %>
+<% end %>
+
 <%= render 'post', post: @post %>

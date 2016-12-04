@@ -1,0 +1,80 @@
+<% content_for :head do %>
+    <style type="text/css" media="screen">
+	.ace_editor {
+		border: 1px solid lightgray;
+		margin: auto;
+		margin-top: 10px;
+		height: 850px;
+		width: 100%;
+	}
+	.scrollmargin {
+		height: 80px;
+        text-align: center;
+	}
+    </style>
+<% end %>
+
+<div class="row">
+    <div class="col-md-3">
+        <h1>
+            <%= title %>
+        </h1>
+        <% if !@snippet.new_record? %>
+            <p>
+                <%= link_to "View Snippet", snippet_path(@snippet) %>
+            </p>
+        <% end %>
+        <%= render 'shared/errors', obj: @snippet %>
+        <div>
+            <%= form_for @snippet do |f| %>
+                <div class="form-group">
+                    <%= f.label :name %>
+                    <%= f.text_field :name, class: "form-control" %>
+                </div>
+                <div class="form-group">
+                    <%= f.label :code %>
+                    <%= f.text_field :code, class: "form-control" %>
+                </div>
+                <div class="form-group">
+                    <%= f.text_area :body, style: "display: none;" %>
+                </div>
+                <div class="form-group">
+                    <%= f.submit((@snippet.new_record? ? 'Create Snippet' : 'Update Snippet'), class: "btn btn-success") %>
+                </div>
+            <% end %>
+        </div>
+        <hr />
+        <% if !@snippet.new_record? %>
+            <p>
+                <%= link_to 'Delete Snippet', snippet_path(@snippet), method: 'DELETE', class: "btn btn-danger" %>
+            </p>
+        <% end %>
+    </div>
+    <div class="col-md-9">
+        <div id="editor"><%= @snippet.body %></div>
+    </div>
+</div>
+
+<% content_for :body_close do %>
+    <script src="/ace-builds/src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
+    
+    <script>
+        var editor = ace.edit("editor");
+        editor.setTheme("ace/theme/cobalt");
+        editor.getSession().setMode("ace/mode/html");
+
+        var textarea = $('textarea[name="snippet[body]"]');
+        editor.getSession().on("change", function () {
+            textarea.val(editor.getSession().getValue());
+        });
+        
+        $(document).on('keydown', function(e){
+            if(e.ctrlKey && e.which === 83){ // Check for the Ctrl key being pressed, and if the key = [S] (83)
+                console.log('Ctrl+S!');
+                $("form input[name=commit]").click();
+                e.preventDefault();
+                return false;
+            }
+        });
+    </script>
+<% end %>

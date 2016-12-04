@@ -1,0 +1,5 @@
+<%= link_to 'Edit Snippet', edit_snippet_path(@snippet), class: "btn btn-primary" %>
+<%= link_to 'Delete Snippet', snippet_path(@snippet), method: 'DELETE', class: "btn btn-danger" %>
+<hr />
+<%= @snippet.body %>
+

@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
     before_filter :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
     before_action :set_post, only: [:show, :edit, :update, :destroy]
+    before_action :set_snippets, only: [:edit, :new, :update]
     
     def index
         @posts = Post.all
@@ -52,7 +53,11 @@ class PostsController < ApplicationController
         end
     end
     
+    def set_snippets
+        @snippets = Snippet.all
+    end
+    
     def post_params
-        params.require(:post).permit(:title, :body, :slug)
+        params.require(:post).permit(:title, :body, :head, :body_close, :slug)
     end
 end

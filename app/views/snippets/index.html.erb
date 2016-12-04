@@ -1,0 +1,16 @@
+<div class="row">
+    <% if user_signed_in? %>
+        <p>
+            <%= link_to 'New Snippet', new_snippet_path, class: "btn btn-success" %>
+        </p>
+        <ul>
+            <% @snippets.each do |snip| %>
+                <li>
+                    <%= link_to snip.name, snippet_path(snip) %>
+                    <%= link_to 'Edit Snippet', edit_snippet_path(snip), class: "btn btn-primary" %>
+                    <%= link_to 'Delete Snippet', snippet_path(snip), method: 'DELETE', class: "btn btn-danger" %>
+                </li>
+            <% end %>
+        </ul>
+    <% end %>
+</div>
