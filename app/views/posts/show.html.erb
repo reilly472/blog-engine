@@ -1,9 +1,24 @@
 <% content_for :head do %>
-    <%= @post.head.html_safe %>
+    <% if @post.head %>
+        <%= Liquid::Template.parse(@post.head).render( 'params' => params, 'snippet' => @snip_hash ).html_safe %>
+    <% end %>
+    <% if user_signed_in? %>
+        <style>
+            body {
+              padding-top: 50px;
+            }
+        </style>
+    <% end %>
 <% end %>
 
 <% content_for :body_close do %>
-    <%= @post.body_close.html_safe %>
+    <% if @post.body_close %>
+        <%= @post.body_close.html_safe %>
+    <% end %>
 <% end %>
 
-<%= render 'post', post: @post %>
+<% if user_signed_in? %>
+    <%= render 'shared/navigation' %>
+<% end %>
+
+<%= Liquid::Template.parse(@post.body).render( 'params' => params, 'snippet' => @snip_hash ).html_safe %>

@@ -1,7 +1,9 @@
 class PostsController < ApplicationController
     before_filter :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
     before_action :set_post, only: [:show, :edit, :update, :destroy]
-    before_action :set_snippets, only: [:edit, :new, :update]
+    before_action :set_snippets, only: [:edit, :new, :update, :show, :create]
+    
+    layout "application", :only => [ :index, :edit, :new ]
     
     def index
         @posts = Post.all
@@ -22,7 +24,7 @@ class PostsController < ApplicationController
             flash[:notice] = "Post created" 
             redirect_to posts_path
         else
-            render :new
+            render :new, layout: 'application'
         end
     end
     
@@ -31,9 +33,9 @@ class PostsController < ApplicationController
     def update
         if @post.update(post_params)
             flash[:notice] = "Post updated"
-            render :edit
+            render :edit, layout: 'application'
         else
-            render :edit
+            render :edit, layout: 'application'
         end
     end
     
@@ -55,6 +57,10 @@ class PostsController < ApplicationController
     
     def set_snippets
         @snippets = Snippet.all
+        @snip_hash = {}
+        @snippets.each do |snip|
+            @snip_hash[snip.code] = snip.body
+        end
     end
     
     def post_params

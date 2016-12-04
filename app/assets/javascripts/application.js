@@ -13,7 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap-sprockets
-//= require turbolinks
 //= require ace-rails-ap
 //= require ace/theme-solarized_dark
 //= require ace/theme-cobalt

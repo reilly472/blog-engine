@@ -2,8 +2,9 @@
     <%= link_to post.title, post_path(post) %>
 </h2>
 <div>
-    <%= Liquid::Template.parse(post.body).render( 'params' => params, 'snippet' => SnippetDrop.new ).html_safe %>
+    <%= Liquid::Template.parse(post.body).render( 'params' => params, 'snippet' => @snip_hash ).html_safe %>
 </div>
+
 <% if user_signed_in? %>
     <p>
         <%= link_to 'Edit Post', edit_post_path(post), class: "btn btn-primary" %>
