@@ -9,8 +9,8 @@
     <%= javascript_include_tag 'application' %>
     <%= yield(:head) %>
   </head>
-    <body>
-      <%= yield %>
-      <%= yield(:body_close) %>
-    </body>
+  <body class="<%= yield(:body_class).strip %>">
+    <%= yield %>
+    <%= yield(:body_close) %>
+  </body>
 </html>
