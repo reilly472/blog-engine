@@ -1,0 +1,9 @@
+<ul>
+    <% @images.each do |img| %>
+        <li>
+            <%= img.images[0].current_path %>
+            <%= img.images[0].url %>
+            <%= image_tag img.images[0].url %>
+        </li>
+    <% end %>
+</ul>

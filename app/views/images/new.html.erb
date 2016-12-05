@@ -1,0 +1,19 @@
+<div class="row">
+    <h1>
+        New Image
+    </h1>
+    <%= render 'shared/errors', obj: @image %>
+    <%= form_for @image do |f| %>
+        <div class="form-group">
+            <%= f.label :name %>
+            <%= f.text_field :name %>
+        </div>
+        <div class="form-group">
+            <%= f.label :images %>
+            <%= f.file_field :images, multiple: true %>
+        </div>
+        <div class="form-group">
+            <%= f.submit("Upload Image", class: "btn btn-success") %>
+        </div>
+    <% end %>
+</div>

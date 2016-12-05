@@ -5,4 +5,5 @@ Rails.application.routes.draw do
   resources :posts
   resources :snippets
   resources :click_trackers, path: 'r'
+  resources :images
 end

@@ -34,6 +34,11 @@ gem 'ace-rails-ap'
 gem 'liquid'
 gem 'friendly_id'
 gem 'simple_form'
+gem 'figaro'
+
+gem 'fog'
+gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
+gem "mini_magick"
 
 group :development, :test do
     # Call 'byebug' anywhere in the code to stop execution and get a debugger console
