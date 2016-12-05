@@ -1,0 +1,25 @@
+<div class="row">
+    <h1>
+        <%= title %>
+    </h1>
+    <%= render 'shared/errors', obj: @click_tracker %>
+    <div>
+        <%= form_for @click_tracker do |f| %>
+            <div class="form-group">
+                <%= f.label :name %>
+                <%= f.text_field :name, class: "form-control" %>
+            </div>
+            <div class="form-group">
+                <%= f.label :url %>
+                <%= f.text_field :url, class: "form-control" %>
+            </div>
+            <div class="form-group">
+                <%= f.label :slug %>
+                <%= f.text_field :slug, class: "form-control" %>
+            </div>
+            <div class="form-group">
+                <%= f.submit((@click_tracker.new_record? ? 'Create Click Tracker' : 'Update Click Tracker'), class: "btn btn-success") %>
+            </div>
+        <% end %>
+    </div>
+</div>

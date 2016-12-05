@@ -1,0 +1,17 @@
+<div class="row">
+    <h1>
+        All Click Trackers:
+    </h1>
+    <p>
+        <%= link_to 'New Click Tracker', new_click_tracker_path, class: "btn btn-success" %>
+    </p>
+    <ul>
+        <% @click_trackers.each do |ct| %>
+            <li>
+                <%= link_to ct.name, click_tracker_path(ct) %>
+                <%= link_to 'Edit Click Tracker', edit_click_tracker_path(ct), class: "btn btn-primary" %>
+                <%= link_to 'Delete Click Tracker', click_tracker_path(ct), method: 'DELETE', class: "btn btn-danger" %>
+            </li>
+        <% end %>
+    </ul>
+</div>

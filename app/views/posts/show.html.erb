@@ -13,7 +13,7 @@
 
 <% content_for :body_class do %>
     <% if @post.body_class %>
-        <% #config.cache_class needs to be set to true to test this %>
+        <% #config.cache_classes needs to be set to true to test this %>
         <%= Liquid::Template.parse(@post.body_class).render( 'params' => params, 'snippet' => @snip_hash).html_safe %>
     <% end %>
 <% end %>
