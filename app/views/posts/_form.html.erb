@@ -71,16 +71,84 @@
             </p>
         <% end %>
         <hr />
-        <h4>
-            User Snippets:
-        </h4>
-        <ul>
-            <% @snippets.each do |snip| %>
-                <li>
-                    <%= snip.code %>
-                </li>
-            <% end %>
-        </ul>
+        <a href="#LiquidTTagsC" data-toggle="collapse">
+            <h4>
+                Liquid Tags:
+            </h4>
+        </a>
+        <div id="LiquidTTagsC" class="collapse">
+            <h5><strong>GET Params:</strong></h5>
+            <h5>{{ params['NAME'] }}</h5>
+        </div>
+        <hr />
+        <a href="#PostsC" data-toggle="collapse">
+            <h4>
+                Posts:
+            </h4>
+        </a>
+        <div id="PostsC" class="collapse">
+            <h5>{{ posts[ID] }}</h5>
+            <h5>.title, .body, .slug, .id</h5>
+            <ul>
+                <% @posts_collection.each_with_index do |post, index| %>
+                    <li>
+                        <strong>Title: </strong><%= post['title'] %>
+                        <br/>
+                        <strong>URL: </strong><%= post_path(Post.friendly.find(post['slug'])) %>
+                        <br/>
+                        <strong>ID: </strong><%= index %>
+                    </li>
+                <% end %>
+            </ul>
+        </div>
+        <hr />
+        <a href="#UserSnippetsC" data-toggle="collapse">
+            <h4>
+                User Snippets:
+            </h4>
+        </a>
+        <div id="UserSnippetsC" class="collapse">
+            <h5>{% include "SNIPPET", var: "X", var: "Y" %}</h5>
+            <ul>
+                <% @snippets.each do |snip| %>
+                    <li>
+                        <%= snip.code %>
+                    </li>
+                <% end %>
+            </ul>
+        </div>
+        <hr />
+        <a href="#ImagesC" data-toggle="collapse">
+            <h4>
+                Images:
+            </h4>
+        </a>
+        <div id="ImagesC" class="collapse">
+            <ul>
+                <% Image.all.each do |img| %>
+                    <li>
+                        <strong><%= img.name %>: </strong><%= image_path(img) %>
+                    </li>
+                <% end %>
+            </ul>
+        </div>
+        <hr />
+        <a href="#ClickTrackersC" data-toggle="collapse">
+            <h4>
+                Click Trackers:
+            </h4>
+        </a>
+        <div id="ClickTrackersC" class="collapse">
+            <ul>
+                <% ClickTracker.all.each do |ct| %>
+                    <li>
+                        <strong><%= ct.name %>: </strong>
+                        <br/>
+                        <%= click_trackers_path(ct) %>
+                    </li>
+                <% end %>
+            </ul>
+        </div>
     </div>
     <div class="col-md-9">
         <h3>

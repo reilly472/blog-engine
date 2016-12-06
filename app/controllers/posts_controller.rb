@@ -2,6 +2,8 @@ class PostsController < ApplicationController
     before_filter :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
     before_action :set_post, only: [:show, :edit, :update, :destroy]
     before_action :set_snippets, only: [:edit, :new, :update, :show, :create]
+    before_action :set_posts_collection, except: [:destroy]
+    
     
     layout "application", :only => [ :index, :edit, :new ]
     
@@ -61,6 +63,10 @@ class PostsController < ApplicationController
         @snippets.each do |snip|
             @snip_hash[snip.code] = snip.body
         end
+    end
+    
+    def set_posts_collection
+        @posts_collection = Post.all.collect { |c| c.attributes }
     end
     
     def post_params
