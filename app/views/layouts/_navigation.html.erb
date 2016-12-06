@@ -13,18 +13,23 @@
       <ul class="nav navbar-nav">
         <% if user_signed_in? %>
             <li>
-              <%= link_to new_post_path do %>
-                <i class="fa fa-plus" aria-hidden="true"></i> New Post
+              <%= link_to posts_path do %>
+                <i class="fa fa-paper-plane-o" aria-hidden="true"></i> Posts
               <% end %>
             </li>
             <li>
               <%= link_to snippets_path do %>
-                <i class="fa fa-file-code-o" aria-hidden="true"></i> All Snippets
+                <i class="fa fa-file-code-o" aria-hidden="true"></i> Snippets
+              <% end %>
+            </li>
+            <li>
+              <%= link_to images_path do %>
+                <i class="fa fa-picture-o" aria-hidden="true"></i> Images
               <% end %>
             </li>
             <li>
               <%= link_to click_trackers_path do %>
-                <i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i> All Click Trackers
+                <i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i> Click Trackers
               <% end %>
             </li>
             <li>

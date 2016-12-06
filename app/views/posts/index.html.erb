@@ -1,8 +1,10 @@
-<h1>
-    Latest blog posts:
-</h1>
-
 <div class="row">
+    <h1>
+        All posts:
+    </h1>
+    <p>
+        <%= link_to 'New Post', new_post_path, class: "btn btn-success" %>
+    </p>
     <% @posts.each do |post| %>
         <%= render 'post', post: post %>
         <hr />

@@ -1,9 +1,26 @@
-<ul>
-    <% @images.each do |img| %>
-        <li>
-            <%= img.images[0].current_path %>
-            <%= img.images[0].url %>
-            <%= image_tag img.images[0].url %>
-        </li>
-    <% end %>
-</ul>
+<div class ="row">
+    <h1>
+        All Images:
+    </h1>
+    <p>
+        <%= link_to 'New Image', new_image_path, class: "btn btn-success" %>
+    </p>
+    <ul>
+        <% @images.each do |img| %>
+            <li>
+                <strong>Name: </strong><%= img.name %>
+                <br/>
+                <strong>Slug: </strong><%= img.slug %>
+                <br/>
+                <strong>Host URL: </strong><%= img.images[0].url %>
+                <br/>
+                <%= link_to image_path(img) do %>
+                    <%= image_tag image_path(img) %>
+                <% end %>
+                <br/>
+                <%= link_to 'Edit Image', edit_image_path(img), class: "btn btn-primary" %>
+                <%= link_to 'Delete Image', image_path(img), method: 'DELETE', class: "btn btn-danger" %>
+            </li>
+        <% end %>
+    </ul>
+</div>

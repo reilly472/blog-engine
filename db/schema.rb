@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161205032521) do
+ActiveRecord::Schema.define(version: 20161206001009) do
 
   create_table "click_trackers", force: :cascade do |t|
     t.string   "name"
@@ -38,6 +38,8 @@ ActiveRecord::Schema.define(version: 20161205032521) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.         "images"
+    t.string   "slug"
+    t.index ["slug"], name: "index_images_on_slug", unique: true
   end
 
   create_table "posts", force: :cascade do |t|

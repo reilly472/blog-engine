@@ -25,7 +25,7 @@
 <% end %>
 
 <% if user_signed_in? %>
-    <%= render 'shared/navigation' %>
+    <%= render 'layouts/navigation' %>
 <% end %>
 
 <%= Liquid::Template.parse(@post.body).render( 'params' => params, 'snippet' => @snip_hash ).html_safe %>
