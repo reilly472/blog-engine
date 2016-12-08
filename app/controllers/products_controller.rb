@@ -59,7 +59,7 @@ class ProductsController < ApplicationController
     private
     
     def product_params
-        params.require(:product).permit(:name)
+        params.require(:product).permit(:name, download_ids: [])
     end
     
     def set_product

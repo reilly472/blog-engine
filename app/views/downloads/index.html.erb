@@ -18,9 +18,19 @@
                     Download File
                 <% end %>
                 <br/>
+                <strong>Products:</strong>
+                <ul>
+                    <% dl.products.each do |product| %>
+                        <li>
+                            <%= link_to product.name, product_path(product) %>
+                        </li>
+                    <% end %>
+                </ul>
+                <br/>
                 <%= link_to 'Edit File', edit_download_path(dl), class: "btn btn-primary" %>
                 <%= link_to 'Delete File', download_path(dl), method: 'DELETE', class: "btn btn-danger", data: { confirm: "Are you sure you want to delete this?" } %>
             </li>
+            <hr/>
         <% end %>
     </ul>
 </div>

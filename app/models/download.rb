@@ -8,4 +8,7 @@ class Download < ActiveRecord::Base
     
     validates :name, presence: true
     validates :slug, presence: true, uniqueness: true
+    
+    has_many :product_downloads
+    has_many :products, through: :product_downloads
 end
