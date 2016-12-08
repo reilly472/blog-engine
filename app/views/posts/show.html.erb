@@ -13,19 +13,23 @@
 
 <% content_for :body_class do %>
     <% if @post.body_class %>
-        <% #config.cache_classes needs to be set to true to test this %>
+        <% #config.cache_classes needs to be set to true to test this - /config/environments/development.rb %>
         <%= Liquid::Template.parse(@post.body_class).render( 'params' => params, 'snippet' => @snip_hash).html_safe %>
     <% end %>
 <% end %>
 
 <% content_for :body_close do %>
     <% if @post.body_close %>
-        <%= @post.body_close.html_safe %>
+        <% #config.cache_classes needs to be set to true to test this - /config/environments/development.rb %>
+        <%= Liquid::Template.parse(@post.body_close).render( 'params' => params, 'snippet' => @snip_hash).html_safe %>
     <% end %>
 <% end %>
 
-<% if user_signed_in? %>
-    <%= render 'layouts/navigation' %>
+<% if user_signed_in? and current_user.moderator? %>
+    <p>
+        <%= link_to 'Edit Post', edit_post_path(@post), class: "btn btn-primary" %>
+        <%= link_to 'Delete Post', post_path(@post), method: 'DELETE', class: "btn btn-danger", data: { confirm: "Are you sure you want to delete this?" } %>
+    </p>
 <% end %>
 
 <%= Liquid::Template.parse(@post.body).render( 'params' => params, 'snippet' => @snip_hash ).html_safe %>

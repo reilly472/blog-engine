@@ -13,7 +13,7 @@ class ProductsController < ApplicationController
     end
     
     def buy
-        @product = Product.find(params[:product_id])
+        @product = Product.friendly.find(params[:product_id])
         
         if !current_user.products.include?(@product)
             current_user.products << @product
@@ -61,10 +61,10 @@ class ProductsController < ApplicationController
     private
     
     def product_params
-        params.require(:product).permit(:name, download_ids: [])
+        params.require(:product).permit(:slug, :name, download_ids: [])
     end
     
     def set_product
-        @product = Product.find(params[:id])
+        @product = Product.friendly.find(params[:id])
     end
 end

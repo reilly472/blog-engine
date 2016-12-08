@@ -35,32 +35,42 @@ class UsersController < ApplicationController
           params[:user].delete(:password_confirmation)
         end
         
-        if @user.update(user_params)
-            flash[:notice] = "User updated"
-            render :edit
+        if !@user.super_admin?
+            if @user.update(user_params)
+                flash[:notice] = "User updated"
+                render :edit
+            else
+                render :edit
+            end
         else
-            render :edit
+            flash[:error] = "You cannot change a super admin"
+            redirect_to root_path
         end
     end
     
     def destroy 
-        if @user != current_user
-            @user.destroy
-            flash[:notice] = "User deleted"
-            redirect_to root_path
+        if !@user.super_admin?
+            if @user != current_user
+                @user.destroy
+                flash[:notice] = "User deleted"
+                redirect_to root_path
+            else
+                flash[:error] = "You can't delete your self"
+                redirect_to root_path 
+            end
         else
-            flash[:error] = "You can't delete your self"
-            redirect_to root_path 
+           flash[:error] = "You cannot delete a super admin." 
+           redirect_to root_path 
         end
     end
     
     private
     
     def set_user 
-        @user = User.find(params[:id])
+        @user = User.friendly.find(params[:id])
     end
     
     def user_params 
-        params.require(:user).permit(:email, :role, :password, :password_confirmation, product_ids: [])
+        params.require(:user).permit(:username, :email, :role, :password, :password_confirmation, product_ids: [])
     end
 end

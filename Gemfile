@@ -35,6 +35,7 @@ gem 'liquid'
 gem 'friendly_id'
 gem 'simple_form'
 gem 'figaro'
+gem 'seed_dump'
 
 gem 'fog'
 gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'

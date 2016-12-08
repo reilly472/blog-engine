@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161208032006) do
+ActiveRecord::Schema.define(version: 20161208201025) do
 
   create_table "click_trackers", force: :cascade do |t|
     t.string   "name"
@@ -74,6 +74,8 @@ ActiveRecord::Schema.define(version: 20161208032006) do
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "slug"
+    t.index ["slug"], name: "index_products_on_slug", unique: true
   end
 
   create_table "snippets", force: :cascade do |t|
@@ -105,8 +107,11 @@ ActiveRecord::Schema.define(version: 20161208032006) do
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
     t.string   "role"
+    t.string   "username"
+    t.boolean  "super_admin"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["username"], name: "index_users_on_username", unique: true
   end
 
 end

@@ -39,11 +39,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
   private
   
   def sign_up_params
-    params.require(:user).permit(:email, :password, :password_confirmation, product_ids: [])
+    params.require(:user).permit(:username, :email, :password, :password_confirmation, product_ids: [])
   end
 
   def account_update_params
-    params.require(:user).permit(:email, :password, :password_confirmation, :current_password, product_ids: [])
+    params.require(:user).permit(:username, :email, :password, :password_confirmation, :current_password, product_ids: [])
   end
 
   # The path used after sign up.

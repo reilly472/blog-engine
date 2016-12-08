@@ -10,8 +10,15 @@
     <ul>
         <% @users.each do |user| %>
             <li class="snippet-view">
-                <%= link_to user.email, user_path(user) %>
-                <br/>
+                <p>
+                    <strong>Username: </strong><%= link_to user.username, user_path(user) %>
+                </p>
+                <p>
+                    <strong>Email: </strong><%= user.email %>
+                </p>
+                <p>
+                    <strong>User's Products: </strong>
+                </p>
                 <ul>
                     <% user.products.each do |product| %>
                         <li>
