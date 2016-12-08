@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
     before_filter :authenticate_user!
+    before_action :require_moderator, except: [:show, :index]
+    
     before_action :set_user, only: [:show, :edit, :update, :destroy]
     
     def index 
@@ -59,6 +61,6 @@ class UsersController < ApplicationController
     end
     
     def user_params 
-        params.require(:user).permit(:email, :password, :password_confirmation, product_ids: [])
+        params.require(:user).permit(:email, :role, :password, :password_confirmation, product_ids: [])
     end
 end

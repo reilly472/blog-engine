@@ -1,5 +1,7 @@
 class DownloadsController < ApplicationController
-    before_filter :authenticate_user!
+    before_filter :authenticate_user!, except: [:show]
+    before_action :require_moderator, except: [:show]
+    
     before_action :set_download, only: [:destroy, :show, :edit, :update]
     
     def index

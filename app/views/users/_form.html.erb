@@ -13,8 +13,11 @@
                 <%= f.label :password %>
                 <%= f.text_field :password, autocomplete: "off", hint: "leave it blank if you don't want to change it", required: false %>
             </div>
-            
-            <div class='control-group'>
+            <div class="form-group">
+                <%= f.label :role %>
+                <%= f.collection_select :role, ["none", "moderator", "admin"], :to_s, :humanize %> 
+            </div>
+            <div class='form-group'>
                 <%= f.label "Products" %>
                 <%= f.collection_check_boxes :product_ids, Product.all, :id, :name do |cb| %>
                     <% cb.label(class: "checkbox inline") {cb.check_box(class: "checkbox") + cb.text} %>

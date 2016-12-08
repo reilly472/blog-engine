@@ -1,5 +1,7 @@
 class ImagesController < ApplicationController
    before_filter :authenticate_user!, except: [:show]
+   before_action :require_moderator, except: [:show]
+   
    before_action :set_image, only: [:destroy, :show, :edit, :update]
 
    def index

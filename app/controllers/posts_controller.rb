@@ -1,5 +1,7 @@
 class PostsController < ApplicationController
-    before_filter :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+    before_filter :authenticate_user!, except: [:show, :index]
+    before_action :require_moderator, except: [:show, :index]
+    
     before_action :set_post, only: [:show, :edit, :update, :destroy]
     before_action :set_snippets, only: [:edit, :new, :update, :show, :create]
     before_action :set_posts_collection, except: [:destroy]

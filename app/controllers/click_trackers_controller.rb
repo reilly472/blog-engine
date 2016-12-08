@@ -1,5 +1,7 @@
 class ClickTrackersController < ApplicationController
     before_filter :authenticate_user!, except: [:show]
+    before_action :require_moderator, except: [:show]
+    
     before_action :set_click_tracker, only: [:show, :edit, :update, :destroy]
     
     def index

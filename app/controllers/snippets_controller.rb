@@ -1,5 +1,7 @@
 class SnippetsController < ApplicationController
-    before_filter :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+    before_filter :authenticate_user!
+    before_action :require_moderator
+    
     before_action :set_snippet, only: [:show, :edit, :update, :destroy]
     
     def index
