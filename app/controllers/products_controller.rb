@@ -15,8 +15,6 @@ class ProductsController < ApplicationController
     def buy
         @product = Product.find(params[:product_id])
         
-        binding.pry
-        
         if !current_user.products.include?(@product)
             current_user.products << @product
             flash[:notice] = "Producted Purchased!"
