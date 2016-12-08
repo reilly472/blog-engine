@@ -10,6 +10,19 @@ class ProductsController < ApplicationController
         
     end
     
+    def buy
+        @product = Product.find(params[:product_id])
+        
+        if !current_user.products.include?(params[@product])
+            current_user.products << @product
+            flash[:notice] = "Producted Purchased!"
+        else
+            flash[:error] = "You already have this product!"
+        end
+        
+        redirect_to products_path
+    end
+    
     def new
         @product = Product.new
     end

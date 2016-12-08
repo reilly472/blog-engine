@@ -11,8 +11,11 @@ Rails.application.routes.draw do
   resources :snippets
   resources :click_trackers, path: 'r'
   resources :images
-  resources :products
+  resources :products do
+    get 'buy'
+  end
   resources :downloads
   
   get '/n', to: 'users#index'
+  
 end

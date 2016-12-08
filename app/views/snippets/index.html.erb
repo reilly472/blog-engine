@@ -1,5 +1,8 @@
 <div class="row">
     <% if user_signed_in? %>
+        <h1>
+            All Snippets
+        </h1>
         <p>
             <%= link_to 'New Snippet', new_snippet_path, class: "btn btn-success" %>
         </p>
