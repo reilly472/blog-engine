@@ -10,7 +10,7 @@
             <li>
                 <%= link_to ct.name, click_tracker_path(ct) %>
                 <%= link_to 'Edit Click Tracker', edit_click_tracker_path(ct), class: "btn btn-primary" %>
-                <%= link_to 'Delete Click Tracker', click_tracker_path(ct), method: 'DELETE', class: "btn btn-danger" %>
+                <%= link_to 'Delete Click Tracker', click_tracker_path(ct), method: 'DELETE', class: "btn btn-danger", data: { confirm: "Are you sure you want to delete this?" } %>
             </li>
         <% end %>
     </ul>

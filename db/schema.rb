@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161206001009) do
+ActiveRecord::Schema.define(version: 20161207210912) do
 
   create_table "click_trackers", force: :cascade do |t|
     t.string   "name"
@@ -19,6 +19,15 @@ ActiveRecord::Schema.define(version: 20161206001009) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["slug"], name: "index_click_trackers_on_slug", unique: true
+  end
+
+  create_table "downloads", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.         "downloads"
+    t.string   "slug"
+    t.index ["slug"], name: "index_downloads_on_slug", unique: true
   end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
@@ -54,12 +63,25 @@ ActiveRecord::Schema.define(version: 20161206001009) do
     t.index ["slug"], name: "index_posts_on_slug", unique: true
   end
 
+  create_table "products", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "snippets", force: :cascade do |t|
     t.string   "name"
     t.text     "body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string   "code"
+  end
+
+  create_table "user_products", force: :cascade do |t|
+    t.integer  "product_id"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|

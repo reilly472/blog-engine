@@ -1,0 +1,27 @@
+<div class="row">
+    <h1>
+        New File Download
+    </h1>
+    <%= render 'shared/errors', obj: @download %>
+    <%= form_for @download do |f| %>
+        <div class="form-group">
+            <%= f.label :name %>
+            <%= f.text_field :name %>
+        </div>
+        <div class="form-group">
+            <%= f.label :slug %>
+            <%= f.text_field :slug %>
+        </div>
+        <div class="form-group">
+            <p>
+                <%= link_to @download.downloads[0].url, @download.downloads[0].url %>
+            </p>
+        </div>
+        <div class="form-group">
+            <%= f.submit("Update File", class: "btn btn-success") %>
+        </div>
+        <div>
+            <%= link_to 'Delete File', download_path(@download), method: 'DELETE', class: "btn btn-danger", data: { confirm: "Are you sure you want to delete this?" } %>
+        </div>
+    <% end %>
+</div>

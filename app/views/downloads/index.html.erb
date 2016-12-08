@@ -1,0 +1,26 @@
+<div class ="row">
+    <h1>
+        All Files/Downloads:
+    </h1>
+    <p>
+        <%= link_to 'New File', new_download_path, class: "btn btn-success" %>
+    </p>
+    <ul>
+        <% @downloads.each do |dl| %>
+            <li>
+                <strong>Name: </strong><%= dl.name %>
+                <br/>
+                <strong>Slug: </strong><%= dl.slug %>
+                <br/>
+                <strong>Host URL: </strong><%= dl.downloads[0].url %>
+                <br/>
+                <%= link_to download_path(dl) do %>
+                    Download File
+                <% end %>
+                <br/>
+                <%= link_to 'Edit File', edit_download_path(dl), class: "btn btn-primary" %>
+                <%= link_to 'Delete File', download_path(dl), method: 'DELETE', class: "btn btn-danger", data: { confirm: "Are you sure you want to delete this?" } %>
+            </li>
+        <% end %>
+    </ul>
+</div>

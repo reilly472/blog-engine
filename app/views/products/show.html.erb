@@ -1,0 +1,11 @@
+<%= link_to 'Edit Product', edit_product_path(@product), class: "btn btn-primary" %>
+<%= link_to 'Delete Product', product_path(@product), method: 'DELETE', class: "btn btn-danger", data: { confirm: "Are you sure you want to delete this?" } %>
+<hr />
+<%= @product.name %>
+<ul>
+    <% @product.users.each do |user| %>
+        <li>
+            <%= user.email %>
+        </li>
+    <% end %>
+</ul>

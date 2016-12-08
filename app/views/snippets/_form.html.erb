@@ -46,7 +46,7 @@
         <hr />
         <% if !@snippet.new_record? %>
             <p>
-                <%= link_to 'Delete Snippet', snippet_path(@snippet), method: 'DELETE', class: "btn btn-danger" %>
+                <%= link_to 'Delete Snippet', snippet_path(@snippet), method: 'DELETE', class: "btn btn-danger", data: { confirm: "Are you sure you want to delete this?" } %>
             </p>
         <% end %>
     </div>

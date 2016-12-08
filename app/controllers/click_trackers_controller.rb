@@ -7,7 +7,7 @@ class ClickTrackersController < ApplicationController
     end
     
     def show
-        redirect_to @click_tracker.url
+        redirect_to fix_url(@click_tracker.url)
     end
     
     def new

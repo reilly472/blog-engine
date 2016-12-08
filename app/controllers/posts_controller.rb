@@ -4,7 +4,6 @@ class PostsController < ApplicationController
     before_action :set_snippets, only: [:edit, :new, :update, :show, :create]
     before_action :set_posts_collection, except: [:destroy]
     
-    
     layout "application", :only => [ :index, :edit, :new ]
     
     def index
