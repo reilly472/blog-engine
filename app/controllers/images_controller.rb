@@ -12,6 +12,11 @@ class ImagesController < ApplicationController
       redirect_to @image.images[0].url
    end
    
+   def thumb
+      @image = Image.friendly.find(params[:image_id])
+      redirect_to @image.images[0].thumb.url
+   end
+   
    def new
        @image = Image.new
    end
@@ -51,8 +56,8 @@ class ImagesController < ApplicationController
    private
    
    def set_image
-        @image = Image.friendly.find(params[:id]) 
-    end
+     @image = Image.friendly.find(params[:id]) 
+   end
    
    def image_params
         params.require(:image).permit(:name, :slug, {images: []})

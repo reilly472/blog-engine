@@ -14,6 +14,12 @@
                 <br/>
                 <strong>Host URL: </strong><%= img.images[0].url %>
                 <br/>
+                <strong>Thumb path: </strong><%= image_thumb_path(img) %>
+                <br/>
+                <%= link_to image_thumb_path(img) do %>
+                    <%= image_tag image_thumb_path(img) %>
+                <% end %>
+                <br/>
                 <%= link_to image_path(img) do %>
                     <%= image_tag image_path(img) %>
                 <% end %>

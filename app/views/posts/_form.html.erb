@@ -127,7 +127,11 @@
             <ul>
                 <% Image.all.each do |img| %>
                     <li>
-                        <strong><%= img.name %>: </strong><%= image_path(img) %>
+                        <strong><%= img.name %>: </strong><%= link_to image_path(img), 
+                                                                        image_path(img), 
+                                                                        title: image_tag(image_thumb_path(img)),
+                                                                        id: 'preview-link',
+                                                                        data: { "toggle" => "tooltip" } %>
                     </li>
                 <% end %>
             </ul>
@@ -222,5 +226,13 @@
                 return false;
             }
         });
+        
+        $('a[data-toggle="tooltip"]').tooltip({
+            animated: 'fade',
+            placement: 'right',
+            html: true
+        });
+        
+        
     </script>
 <% end %>

@@ -13,6 +13,10 @@ class ImageUploader < CarrierWave::Uploader::Base
     "#{mounted_as}/#{model.id}"
   end
   
+  version :thumb do
+    process resize_to_fill: [128,128]
+  end
+  
   #def store_dir
   #  '/uploads'
   #end
