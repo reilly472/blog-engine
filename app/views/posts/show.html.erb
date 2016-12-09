@@ -2,13 +2,6 @@
     <% if @post.head %>
         <%= Liquid::Template.parse(@post.head).render( 'params' => params, 'snippet' => @snip_hash ).html_safe %>
     <% end %>
-    <% if user_signed_in? %>
-        <style>
-            body {
-              padding-top: 50px;
-            }
-        </style>
-    <% end %>
 <% end %>
 
 <% content_for :body_class do %>
@@ -26,10 +19,15 @@
 <% end %>
 
 <% if user_signed_in? and current_user.moderator? %>
-    <p>
-        <%= link_to 'Edit Post', edit_post_path(@post), class: "btn btn-primary" %>
-        <%= link_to 'Delete Post', post_path(@post), method: 'DELETE', class: "btn btn-danger", data: { confirm: "Are you sure you want to delete this?" } %>
-    </p>
+    <div class="container">
+        <h3>
+            <%= "NOT PUBLISHED" if !@post.published? %>
+        </h3>
+        <p>
+            <%= link_to 'Edit Post', edit_post_path(@post), class: "btn btn-primary" %>
+            <%= link_to 'Delete Post', post_path(@post), method: 'DELETE', class: "btn btn-danger", data: { confirm: "Are you sure you want to delete this?" } %>
+        </p>
+    </div>
 <% end %>
 
 <%= Liquid::Template.parse(@post.body).render( 'params' => params, 'snippet' => @snip_hash ).html_safe %>

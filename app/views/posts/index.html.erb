@@ -8,7 +8,30 @@
         </p>
     <% end %>
     <% @posts.each do |post| %>
-        <%= render 'post', post: post %>
-        <hr />
+        <% if post.published? || (user_signed_in? and current_user.moderator?)  %>
+            <h2>
+                <%= link_to post.title, post_path(post) %> 
+                <%= ((user_signed_in? and current_user.moderator?) and !post.published?) ? " - NOT PUBLISHED" : " " %>
+            </h2>
+            <div>
+                <%= Liquid::Template.parse(post.body).render( 
+                                                            'params' => params, 
+                                                            'snippet' => @snip_hash,
+                                                            'posts' => @posts_collection
+                                                            ).html_safe %>
+            </div>
+            
+            <% if user_signed_in? and current_user.moderator? %>
+                <p>
+                    <%= link_to 'Edit Post', edit_post_path(post), class: "btn btn-primary" %>
+                    <%= link_to 'Delete Post',
+                                post_path(post),
+                                method: 'DELETE',
+                                class: "btn btn-danger",
+                                data: { confirm: "Are you sure you want to delete this?" } %>
+                </p>
+            <% end %>
+            <hr />
+        <% end %>
     <% end %>
 </div>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161208201025) do
+ActiveRecord::Schema.define(version: 20161209011513) do
 
   create_table "click_trackers", force: :cascade do |t|
     t.string   "name"
@@ -60,6 +60,7 @@ ActiveRecord::Schema.define(version: 20161208201025) do
     t.text     "head"
     t.text     "body_close"
     t.string   "body_class"
+    t.boolean  "published"
     t.index ["slug"], name: "index_posts_on_slug", unique: true
   end
 

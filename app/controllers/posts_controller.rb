@@ -13,7 +13,9 @@ class PostsController < ApplicationController
     end
     
     def show
-        
+        if !@post.published? and !(user_signed_in? and current_user.moderator?)
+            redirect_to posts_path
+        end
     end
     
     def new
@@ -71,6 +73,6 @@ class PostsController < ApplicationController
     end
     
     def post_params
-        params.require(:post).permit(:title, :body, :head, :body_close, :slug, :body_class)
+        params.require(:post).permit(:published, :title, :body, :head, :body_close, :slug, :body_class)
     end
 end
